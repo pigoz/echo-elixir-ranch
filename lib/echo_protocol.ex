@@ -2,6 +2,7 @@ require Logger
 
 defmodule EchoProtocol do
   @behaviour :ranch_protocol
+  @timeout 5000
 
   def start_link(ref, socket, transport, opts) do
     Logger.info("[echo] new client")
@@ -15,7 +16,7 @@ defmodule EchoProtocol do
   end
 
   defp loop(socket, transport) do
-    case transport.recv(socket, 0, 5000) do
+    case transport.recv(socket, 0, @timeout) do
       {:ok, data} ->
         transport.send(socket, data)
         loop(socket, transport)
