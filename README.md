@@ -1,4 +1,2 @@
-echo server ranch elixir
-========================
-
-simple test server
+simple echo server in Elixir using Ranch
+========================================
